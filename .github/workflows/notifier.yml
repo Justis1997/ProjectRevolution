@@ -1,0 +1,25 @@
+name: Notifier
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  notifyTelegram:
+    runs-on: ubuntu-latest
+    steps:
+    - name: send custom message
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: markdown
+        message: |
+          *${{ github.actor }}* pushed new changes to *${{ github.repository }}*.
+
+          Changes are:
+          - ${{ github.event.head_commit.message }}
+          
