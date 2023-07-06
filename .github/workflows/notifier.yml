@@ -20,6 +20,6 @@ jobs:
         message: |
           *${{ github.actor }}* pushed new changes to *${{ github.repository }}*.
 
-          Changes are:
+          Changes:
           - ${{ github.event.head_commit.message }}
           
